@@ -30,8 +30,7 @@ fmap' f = fromId . f . Id
 tomonadic :: (a -> b) -> a -> Id b
 tomonadic = fmap Id
 
---in general, for every a . b . ... . r we have
-ingeneral n = do
-    k <- (tomonadic (+1)) n
-    p <- (tomonadic (+2)) k
-    return p
+ingeneral :: a -> (a -> b) -> Id b
+ingeneral n f = do
+    k <- tomonadic f $ n
+    return k
