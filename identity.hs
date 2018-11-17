@@ -27,9 +27,6 @@ fromId (Id v) = v
 fmap' :: (Id a -> Id b) -> a -> b
 fmap' f = fromId . f . Id 
 
-dobedo :: Int -> Id Int
-dobedo k = Id k >>= (\x -> return (x + 1))
-
 tomonadic :: (a -> b) -> a -> Id b
 tomonadic = fmap Id
 
